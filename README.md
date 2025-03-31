@@ -27,9 +27,11 @@ chmod +x ./update-schema.sh
 ```bash
 rm graph/generated/starter.generated.go
 mv starter.graphql repo.graphql
+# remember, repo is your repo name
+mv graph/starter.resolvers.go graph/repo.resolvers.go
 ```
 
-edit gqlgen.yml and replace the `- starter.graphql` with your `repo.graphql`
+edit gqlgen.yml and replace the `- starter.graphql` with your `- repo.graphql`
 
 ```yaml
 schema:
@@ -37,14 +39,13 @@ schema:
   - repo.graphql
 ```
 
-### 4. Change the git repo url
+Regenerate
 
 ```bash
-git remote remove origin
-git remote add origin github.com/user/repo
+go generate ./...
 ```
 
-or simply
+### 4. Change the git repo url
 
 ```bash
 rm -rf .git
@@ -109,3 +110,7 @@ type Claims struct {
 ### Making read access require auth
 
 On line 79 in `cmd/graphql.go` remove the `options.IsPermissive(),`.
+
+## Further reading
+
+[Ent.io GraphQL Tutorial](https://entgo.io/docs/tutorial-todo-gql)
