@@ -23,6 +23,8 @@ func ProfileDefaultMutationRule() privacy.MutationRule {
 			}
 			return privacy.Allow
 		case ent.OpUpdate:
+			fallthrough
+		case ent.OpUpdateOne:
 			sub, x := m.Sub()
 			if !x {
 				// should never happen
@@ -32,6 +34,8 @@ func ProfileDefaultMutationRule() privacy.MutationRule {
 				return privacy.Denyf("unauthorized to edit this profile")
 			}
 			return privacy.Allow
+		case ent.OpDelete:
+			fallthrough
 		case ent.OpDeleteOne:
 			sub, x := m.Sub()
 			if !x {
@@ -50,11 +54,7 @@ func ProfileDefaultMutationRule() privacy.MutationRule {
 
 func ProfileCreateIfNotExists() privacy.QueryRule {
 	return privacy.ProfileQueryRuleFunc(func(ctx context.Context, q *ent.ProfileQuery) error {
-		c := claims.FromContext(ctx)
-		if c == nil {
-			return privacy.Skip
-		}
-		claimSubject := c.Sub
+		claimSubject := claims.SubFromContext(ctx)
 		if claimSubject == "" {
 			return privacy.Skip
 		}
@@ -62,10 +62,9 @@ func ProfileCreateIfNotExists() privacy.QueryRule {
 		if client == nil {
 			return privacy.Skip
 		}
-
 		allow := privacy.DecisionContext(ctx, privacy.Allow)
 		if cnt := client.Profile.Query().Where(profile.Sub(claimSubject)).CountX(allow); cnt == 0 {
-			client.Profile.Create().SetSub(claimSubject).SetName(c.PreferredUsername).ExecX(allow)
+			client.Profile.Create().SetSub(claimSubject).ExecX(allow)
 		}
 		return privacy.Skip
 	})

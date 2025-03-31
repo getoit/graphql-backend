@@ -12,6 +12,7 @@ Let's assume your project is at github.com/user/repo
 mkdir -p ~/go/src/github.com/user
 cd ~/go/src/github.com/user
 git clone github.com/dlukt/graphql-backend-starter repo
+cd repo
 ```
 
 ### 2. Replace the original repository name with your repository name
