@@ -1,0 +1,5 @@
+type Mutation {
+  createProfile(input: CreateProfileInput!): Profile
+  updateProfile(id: ID!, input: UpdateProfileInput!): Profile
+  deleteProfile(id: ID!): ID
+}

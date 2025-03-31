@@ -1,0 +1,36 @@
+# schema tells gqlgen when the GraphQL schema is located.
+schema:
+  - ent.graphql
+  - starter.graphql
+
+# Where should the generated server code go?
+exec:
+  layout: follow-schema
+  dir: graph/generated
+  package: generated
+
+# resolver reports where the resolver implementations go.
+resolver:
+  layout: follow-schema
+  dir: graph
+  package: graph
+  filename_template: "{name}.resolvers.go"
+
+# gqlgen will search for any type names in the schema in these go packages
+# if they match it will use them, otherwise it will generate them.
+
+# autobind tells gqngen to search for any type names in the GraphQL schema in the
+# provided package. If they match it will use them, otherwise it will generate new.
+autobind:
+  - github.com/dlukt/graphql-backend-starter/ent
+  - github.com/dlukt/graphql-backend-starter/ent/profile
+
+# This section declares type mapping between the GraphQL and Go type systems.
+models:
+  # Defines the ID field as Go 'int'.
+  ID:
+    model:
+      - github.com/dlukt/graphql-backend-starter/ent/schema/xidgql.ID
+  Node:
+    model:
+      - github.com/dlukt/graphql-backend-starter/ent.Noder
