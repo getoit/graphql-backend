@@ -1,8 +1,34 @@
 # gqlgen with ent starter
 
 This repository is a gqlgen with ent backend starter template.
+Initial configuration is time-consuming and complicated.
+This is here to make things easier and help people get started with GraphQL and ent.
 
-## How to use
+## Assumptions
+
+- You use [Keycloak](https://www.keycloak.org/) as the OIDC IDP.
+  It can of course be used with any IDP. Just the claims struct is the default that Keycloak uses.
+  You will have to add the audience in Keycloak to the token, because Keycloak is dumb like that.
+- [xid](https://github.com/rs/xid) is used for globally unique IDs
+- Schema reflection is enabled
+- PostgreSQL is used as the backend. Optionally SQLite in-memory mode can be used or development purposes.
+- The Schema is automigrated on each graphql run.
+
+## How to run the backend
+
+### dev mode with SQLite
+
+```bash
+go run main.go graphql --sqlite=true --debug=true
+```
+
+### dev mode with PostgreSQL
+
+```bash
+go run main.go graphql --debug=true
+```
+
+## Getting started
 
 Let's assume your project is at github.com/user/repo
 
@@ -44,6 +70,8 @@ Regenerate
 ```bash
 go generate ./...
 ```
+
+Change the project name in `cmd/root.go`, line 22.
 
 ### 4. Change the git repo url
 

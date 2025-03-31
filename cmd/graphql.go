@@ -43,7 +43,7 @@ var graphqlCmd = &cobra.Command{
 	RunE: func(cmd *cobra.Command, args []string) error {
 		fmt.Println("graphql called")
 		setDatabaseURI()
-		// client := openDB(config.DatabaseURIDev)
+		
 		var client *ent.Client
 		if useSQLite {
 			fmt.Println("Running with SQLite")
@@ -88,7 +88,7 @@ var graphqlCmd = &cobra.Command{
 					oidcHandler,
 				)))
 		} else {
-			http.Handle("/", playground.Handler("bicki", "/query"))
+			http.Handle("/", playground.Handler("graphql", "/query"))
 			http.Handle("/query", corsHandler.Handler(
 				httplog.HandlerWithFormatter(
 					httplog.DefaultLogFormatterWithRequestHeader,

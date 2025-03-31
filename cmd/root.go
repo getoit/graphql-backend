@@ -1,6 +1,5 @@
 /*
 Copyright © 2025 Darko Luketic <info@icod.de>
-
 */
 package cmd
 
@@ -20,7 +19,7 @@ var (
 
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
-	Use:   "bicki",
+	Use:   "starter",
 	Short: "A brief description of your application",
 	Long: `A longer description that spans multiple lines and likely contains
 examples and usage of using your application. For example:
@@ -49,7 +48,7 @@ func init() {
 	// Cobra supports persistent flags, which, if defined here,
 	// will be global for your application.
 
-	rootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default is $HOME/.blogs.yaml)")
+	rootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default is $HOME/.starter.yaml)")
 
 	rootCmd.PersistentFlags().BoolVar(&useSQLite, "sqlite", false, "Use SQLite database")
 	rootCmd.PersistentFlags().StringVar(
@@ -73,7 +72,7 @@ func init() {
 	rootCmd.PersistentFlags().StringVar(
 		&config.DatabaseName,
 		"db_name",
-		"blogs",
+		"",
 		"postgres database name",
 	)
 	rootCmd.PersistentFlags().StringVar(
