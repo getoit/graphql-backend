@@ -10,6 +10,7 @@ This is here to make things easier and help people get started with GraphQL and 
   It can of course be used with any IDP. Just the claims struct is the default that Keycloak uses.
   You will have to add the audience in Keycloak to the token, because Keycloak is dumb like that.
 - [xid](https://github.com/rs/xid) is used for globally unique IDs
+- The `Profile` schema is the root of your related entities.
 - Schema reflection is enabled
 - PostgreSQL is used as the backend. Optionally SQLite in-memory mode can be used or development purposes.
 - The Schema is automigrated on each graphql run.
