@@ -1,6 +1,6 @@
 module github.com/dlukt/graphql-backend-starter
 
-go 1.24
+go 1.24.1
 
 require (
 	code.icod.de/dalu/nethttpoidc v0.0.0-20241126220314-aba3cb4cfd90
