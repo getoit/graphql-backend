@@ -58,7 +58,7 @@ mv starter.graphql repo.graphql
 mv graph/starter.resolvers.go graph/repo.resolvers.go
 ```
 
-edit gqlgen.yml and replace the `- starter.graphql` with your `- repo.graphql`
+edit `gqlgen.yml` and replace the `- starter.graphql` with your `- repo.graphql`
 
 ```yaml
 schema:
