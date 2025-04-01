@@ -45,8 +45,8 @@ cd repo
 ### 2. Replace the original repository name with your repository name
 
 ```bash
-chmod +x ./update-schema.sh
-./update-schema.sh github.com/user/repo
+chmod +x ./update-repo.sh
+./update-repo.sh github.com/user/repo
 ```
 
 ### 3. remove all "starter" occurences and replace with your repo name
