@@ -1,13 +1,10 @@
-/*
-Copyright © 2025 Darko Luketic <info@icod.de>
-*/
 package cmd
 
 import (
 	"fmt"
 	"os"
 
-	"github.com/dlukt/graphql-backend-starter/config"
+	"github.com/getoit/graphql-backend-starter/config"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 )
