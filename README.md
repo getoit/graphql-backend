@@ -18,3 +18,4 @@ For setup and usage instructions, please refer to the project documentation.
 
 ## Support
 For technical support, please open an issue in this repository.
+
